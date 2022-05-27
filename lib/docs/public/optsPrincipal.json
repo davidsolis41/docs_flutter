@@ -1,0 +1,17 @@
+[
+  {
+    "icon": "comp",
+    "name": "Widgets basicos",
+    "description": "hola"
+  },
+  {
+    "icon": "lib",
+    "name": "Librerias",
+    "description": ""
+  },
+  {
+    "icon": "context",
+    "name": "Context",
+    "description": ""
+  }
+]
