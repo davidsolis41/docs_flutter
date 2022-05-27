@@ -28,13 +28,13 @@ class AndroidMain extends StatelessWidget {
 }
 
 Map<String, Widget Function(BuildContext)> routesWithOutLogin(double width) => {
-      '/': (context) => width > 700
+      '/': (context) => width < 700
           ? const MainPageAndroidPhone()
           : const MainPageAndroidTablet(),
     };
 
 Map<String, Widget Function(BuildContext)> routesWithLogin(double width) => {
-      '/': (context) => width > 700
+      '/': (context) => width < 700
           ? const MainPageAndroidPhone()
           : const MainPageAndroidTablet(),
     };
