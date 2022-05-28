@@ -9,11 +9,12 @@ class MainPageAndroidPhone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalState state =
-        BlocProvider.of<GlobalBloc>(context, listen: false).state;
-
-    return state.login
-        ? const HomePageAndroidPhone()
-        : const LoginPageAndroidPhone();
+    return BlocBuilder<GlobalBloc, GlobalState>(
+      builder: (context, state) {
+        return state.login
+            ? const HomePageAndroidPhone()
+            : const LoginPageAndroidPhone();
+      },
+    );
   }
 }

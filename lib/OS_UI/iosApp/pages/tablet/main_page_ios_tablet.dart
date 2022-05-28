@@ -9,9 +9,12 @@ class MainPageIosTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalState state =
-        BlocProvider.of<GlobalBloc>(context, listen: false).state;
-
-    return state.login ? const HomePageIosTablet() : const LoginPageIosTablet();
+    return BlocBuilder<GlobalBloc, GlobalState>(
+      builder: (context, state) {
+        return state.login
+            ? const HomePageIosTablet()
+            : const LoginPageIosTablet();
+      },
+    );
   }
 }
