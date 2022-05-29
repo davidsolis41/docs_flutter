@@ -7,14 +7,26 @@ import 'package:docs_flutter/OS_UI/androidApp/pages/phone/login_page_android_pho
 class MainPageAndroidPhone extends StatelessWidget {
   const MainPageAndroidPhone({Key? key}) : super(key: key);
 
+  void checkLogin(GlobalBloc globalBloc) async {
+    if (false) {
+      globalBloc.add(SetLoginEvent(
+        lastState: globalBloc.state,
+        login: false,
+        token: '',
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final GlobalBloc globalBloc = BlocProvider.of<GlobalBloc>(context);
+
+    checkLogin(globalBloc);
+
     return BlocBuilder<GlobalBloc, GlobalState>(
-      builder: (context, state) {
-        return state.login
-            ? const HomePageAndroidPhone()
-            : const LoginPageAndroidPhone();
-      },
+      builder: (context, state) => state.login
+          ? const HomePageAndroidPhone()
+          : const LoginPageAndroidPhone(),
     );
   }
 }

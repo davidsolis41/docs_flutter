@@ -7,12 +7,25 @@ import 'package:docs_flutter/OS_UI/linuxApp/pages/login_page_linux.dart';
 class MainPageLinux extends StatelessWidget {
   const MainPageLinux({Key? key}) : super(key: key);
 
+  void checkLogin(GlobalBloc globalBloc) async {
+    if (false) {
+      globalBloc.add(SetLoginEvent(
+        lastState: globalBloc.state,
+        login: false,
+        token: '',
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final GlobalBloc globalBloc = BlocProvider.of<GlobalBloc>(context);
+
+    checkLogin(globalBloc);
+
     return BlocBuilder<GlobalBloc, GlobalState>(
-      builder: (context, state) {
-        return state.login ? const HomePageLinux() : const LoginPageLinux();
-      },
+      builder: (context, state) =>
+          state.login ? const HomePageLinux() : const LoginPageLinux(),
     );
   }
 }

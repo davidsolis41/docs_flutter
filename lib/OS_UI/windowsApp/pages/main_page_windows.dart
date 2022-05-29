@@ -7,12 +7,25 @@ import 'package:docs_flutter/OS_UI/windowsApp/pages/login_page_windows.dart';
 class MainPageWindows extends StatelessWidget {
   const MainPageWindows({Key? key}) : super(key: key);
 
+  void checkLogin(GlobalBloc globalBloc) async {
+    if (false) {
+      globalBloc.add(SetLoginEvent(
+        lastState: globalBloc.state,
+        login: false,
+        token: '',
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final GlobalBloc globalBloc = BlocProvider.of<GlobalBloc>(context);
+
+    checkLogin(globalBloc);
+
     return BlocBuilder<GlobalBloc, GlobalState>(
-      builder: (context, state) {
-        return state.login ? const HomePageWindows() : const LoginPageWindows();
-      },
+      builder: (context, state) =>
+          state.login ? const HomePageWindows() : const LoginPageWindows(),
     );
   }
 }

@@ -8,6 +8,6 @@ abstract class ProductosEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AddNewProduct extends ProductosEvent {
-  const AddNewProduct();
+class AddNewProductEvent extends ProductosEvent {
+  const AddNewProductEvent() : super();
 }

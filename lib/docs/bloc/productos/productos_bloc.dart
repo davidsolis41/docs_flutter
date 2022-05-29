@@ -8,7 +8,7 @@ part 'productos_state.dart';
 
 class ProductosBloc extends Bloc<ProductosEvent, ProductosState> {
   ProductosBloc() : super(const ProductosInitialState()) {
-    on<AddNewProduct>((event, emit) {
+    on<AddNewProductEvent>((event, emit) {
       // TODO: implement event handler
     });
   }
