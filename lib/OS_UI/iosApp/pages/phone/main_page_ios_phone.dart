@@ -10,7 +10,7 @@ class MainPageIosPhone extends StatelessWidget {
   void checkLogin(GlobalBloc globalBloc) async {
     if (false) {
       globalBloc.add(SetLoginEvent(
-        lastState: globalBloc.state,
+        globalBloc.state,
         login: false,
         token: '',
       ));
