@@ -8,4 +8,14 @@ abstract class GlobalEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SetTokenEvent extends GlobalEvent {}
+class SetLoginEvent extends GlobalEvent {
+  const SetLoginEvent({
+    required this.lastState,
+    required this.token,
+    required this.login,
+  });
+
+  final GlobalState lastState;
+  final String token;
+  final bool login;
+}

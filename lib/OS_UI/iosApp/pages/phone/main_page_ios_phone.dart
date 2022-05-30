@@ -7,11 +7,23 @@ import 'package:docs_flutter/OS_UI/iosApp/pages/phone/login_page_ios_phone.dart'
 class MainPageIosPhone extends StatelessWidget {
   const MainPageIosPhone({Key? key}) : super(key: key);
 
+  void checkLogin(GlobalBloc globalBloc) async {
+    if (false) {
+      globalBloc.add(SetLoginEvent(
+        lastState: globalBloc.state,
+        login: false,
+        token: '',
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    GlobalState state =
-        BlocProvider.of<GlobalBloc>(context, listen: false).state;
+    checkLogin(context.read<GlobalBloc>());
 
-    return state.login ? const HomePageIosPhone() : const LoginPageIosPhone();
+    return BlocBuilder<GlobalBloc, GlobalState>(
+      builder: (context, state) =>
+          state.login ? const HomePageIosPhone() : const LoginPageIosPhone(),
+    );
   }
 }
