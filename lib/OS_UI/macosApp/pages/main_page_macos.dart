@@ -20,9 +20,7 @@ class MainPageMacOS extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalBloc globalBloc = context.read<GlobalBloc>();
-
-    checkLogin(globalBloc);
+    checkLogin(context.read<GlobalBloc>());
 
     return BlocBuilder<GlobalBloc, GlobalState>(
       builder: (context, state) =>
