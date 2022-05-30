@@ -19,7 +19,7 @@ class MainPageAndroidTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalBloc globalBloc = BlocProvider.of<GlobalBloc>(context);
+    final GlobalBloc globalBloc = context.read<GlobalBloc>();
 
     checkLogin(globalBloc);
 
