@@ -10,6 +10,8 @@ class ScaffoldW extends StatelessWidget {
         // es la barra de título de la app que recibe params
         title: const Text('Home'), // el AppBar recibe un título y mas
       ),
+      resizeToAvoidBottomInset:
+          false, //evitar que los widgets se muevan cuando aparece el teclado
       body: const Center(
         // el cuerpo de la app, recibe un widget
         child: Text('homeeee'),
