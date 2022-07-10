@@ -11,12 +11,12 @@ abstract class GlobalEvent extends Equatable {
 }
 
 class SetLoginEvent extends GlobalEvent {
+  final String token;
+  final bool login;
+
   const SetLoginEvent(
     GlobalState lastState, {
     required this.token,
     required this.login,
   }) : super(lastState);
-
-  final String token;
-  final bool login;
 }

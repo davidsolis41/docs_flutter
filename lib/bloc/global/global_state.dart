@@ -2,13 +2,13 @@ part of 'global_bloc.dart';
 
 @immutable
 abstract class GlobalState extends Equatable {
+  final bool login;
+  final String token;
+
   const GlobalState({
     required this.login,
     required this.token,
   });
-
-  final bool login;
-  final String token;
 
   @override
   List<Object> get props => [];

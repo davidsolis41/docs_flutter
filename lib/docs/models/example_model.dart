@@ -31,6 +31,9 @@ class Examples {
     items = list.map((item) => Example.fromJson(item)).toList();
   }
 
-  static List<Map<String, dynamic>> toJson(List<Example> list) =>
+  List<Map<String, dynamic>> toJson() =>
+      items.map((item) => item.toJson()).toList();
+
+  static List<Map<String, dynamic>> toJsonExternalList(List<Example> list) =>
       list.map((item) => item.toJson()).toList();
 }
