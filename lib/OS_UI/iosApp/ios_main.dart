@@ -33,6 +33,8 @@ final Map<String, Widget Function(BuildContext)> routesWithLogin = {
 };
 
 Widget Function(BuildContext) responsiveScreens(
-        Widget pagePhone, Widget pageTablet) =>
+  Widget pagePhone,
+  Widget pageTablet,
+) =>
     (context) =>
         MediaQuery.of(context).size.width < 700 ? pagePhone : pageTablet;

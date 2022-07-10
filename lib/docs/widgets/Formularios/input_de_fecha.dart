@@ -51,11 +51,12 @@ class _InputFechaState extends State<InputFecha> {
       onTap: () async {
         FocusScope.of(context).requestFocus(FocusNode());
         DateTime? picked = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2018),
-            lastDate: DateTime(2025),
-            locale: const Locale('es', 'ES'));
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2018),
+          lastDate: DateTime(2025),
+          locale: const Locale('es', 'ES'),
+        );
 
         if (picked != null) {
           setState(() {

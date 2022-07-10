@@ -26,15 +26,21 @@ class AndroidMain extends StatelessWidget {
 
 final Map<String, Widget Function(BuildContext)> routesWithOutLogin = {
   '/': responsiveScreens(
-      const MainPageAndroidPhone(), const MainPageAndroidTablet())
+    const MainPageAndroidPhone(),
+    const MainPageAndroidTablet(),
+  )
 };
 
 final Map<String, Widget Function(BuildContext)> routesWithLogin = {
   '/': responsiveScreens(
-      const MainPageAndroidPhone(), const MainPageAndroidTablet())
+    const MainPageAndroidPhone(),
+    const MainPageAndroidTablet(),
+  )
 };
 
 Widget Function(BuildContext) responsiveScreens(
-        Widget pagePhone, Widget pageTablet) =>
+  Widget pagePhone,
+  Widget pageTablet,
+) =>
     (context) =>
         MediaQuery.of(context).size.width < 700 ? pagePhone : pageTablet;

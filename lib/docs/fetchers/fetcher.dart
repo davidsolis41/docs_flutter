@@ -10,51 +10,64 @@ class ResFetch<T> {
 class _Fetcher {
   final Map<String, String> _headders = {"Content-Type": "application/json"};
 
-  Future<ResFetch<T>> get<T>(Uri url, {Map<String, String>? headers}) async {
+  Future<ResFetch<T>> get<T>(Uri url,
+      {Map<String, String>? headers, dynamic? maper}) async {
     final http.Response peticionGet =
         await http.get(url, headers: _getHeaders(_headders, headers));
 
-    return _compStatus<T>(peticionGet);
+    return _compStatus<T>(peticionGet, maper);
   }
 
   Future<ResFetch<T>> post<T>(Uri url,
-      {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
+      {Map<String, String>? headers,
+      Object? body,
+      dynamic? maper,
+      Encoding? encoding}) async {
     final http.Response peticionPost = await http.post(url,
         headers: _getHeaders(_headders, headers),
         body: body,
         encoding: encoding);
 
-    return _compStatus<T>(peticionPost);
+    return _compStatus<T>(peticionPost, maper);
   }
 
   Future<ResFetch<T>> put<T>(Uri url,
-      {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
+      {Map<String, String>? headers,
+      Object? body,
+      dynamic? maper,
+      Encoding? encoding}) async {
     final http.Response peticionPut = await http.put(url,
         headers: _getHeaders(_headders, headers),
         body: body,
         encoding: encoding);
 
-    return _compStatus<T>(peticionPut);
+    return _compStatus<T>(peticionPut, maper);
   }
 
   Future<ResFetch<T>> delete<T>(Uri url,
-      {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
+      {Map<String, String>? headers,
+      Object? body,
+      dynamic? maper,
+      Encoding? encoding}) async {
     final http.Response peticionDelete = await http.delete(url,
         headers: _getHeaders(_headders, headers),
         body: body,
         encoding: encoding);
 
-    return _compStatus<T>(peticionDelete);
+    return _compStatus<T>(peticionDelete, maper);
   }
 
   Future<ResFetch<T>> patch<T>(Uri url,
-      {Map<String, String>? headers, Object? body, Encoding? encoding}) async {
+      {Map<String, String>? headers,
+      Object? body,
+      dynamic? maper,
+      Encoding? encoding}) async {
     final http.Response peticionPatch = await http.patch(url,
         headers: _getHeaders(_headders, headers),
         body: body,
         encoding: encoding);
 
-    return _compStatus<T>(peticionPatch);
+    return _compStatus<T>(peticionPatch, maper);
   }
 
   Map<String, String> _getHeaders(
@@ -81,19 +94,35 @@ class _Fetcher {
     }
   }
 
-  ResFetch<T> _compStatus<T>(http.Response peticion) {
+  ResFetch<T> _compStatus<T>(http.Response peticion, dynamic? Maper) {
     final int status = peticion.statusCode;
-    ResFetch resp;
+    ResFetch respuesta;
+
     try {
-      resp = ResFetch<Map>(status: status, data: jsonDecode(peticion.body));
+      if (Maper == null) {
+        respuesta =
+            ResFetch<Map>(status: status, data: jsonDecode(peticion.body));
+      } else {
+        final dynamic datos = jsonDecode(peticion.body);
+
+        try {
+          respuesta = ResFetch<dynamic>(status: status, data: Maper(datos));
+        } catch (err) {
+          respuesta = ResFetch<String>(
+            status: status,
+            data:
+                "Los datos recibidos no pueden ser convertidos a objetos de tipo 'Maper'",
+          );
+        }
+      }
     } catch (e) {
       try {
-        resp = ResFetch<String>(status: status, data: peticion.body);
+        respuesta = ResFetch<String>(status: status, data: peticion.body);
       } catch (error) {
-        resp = ResFetch<String>(status: status, data: error.toString());
+        respuesta = ResFetch<String>(status: status, data: error.toString());
       }
     }
-    return resp as dynamic;
+    return respuesta as dynamic;
   }
 }
 
