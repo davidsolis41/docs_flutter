@@ -1,13 +1,12 @@
 class Example {
-  late String name;
-  late String description;
-  late double value;
+  String name;
+  String description;
+  double value;
 
-  Example(Map<String, dynamic> json) {
-    name = json["name"] ?? '';
-    description = json["description"] ?? '';
-    value = double.tryParse(json["value"]) ?? 0;
-  }
+  Example(Map<String, dynamic> json)
+      : name = json["name"] ?? '',
+        description = json["description"] ?? '',
+        value = json["value"] ?? 0;
 
   Map<String, dynamic> toJson() => {
         "name": name,
