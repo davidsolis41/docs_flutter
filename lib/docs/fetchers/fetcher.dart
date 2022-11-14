@@ -2,9 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ResFetch<T> {
-  int status;
-  T? data;
-  ResFetch({this.status = 1000, this.data});
+  final int status;
+  final T? data;
+  const ResFetch({this.status = 1000, this.data});
 }
 
 class _Fetcher {
